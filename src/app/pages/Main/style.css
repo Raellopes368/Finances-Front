@@ -1,0 +1,198 @@
+.container {
+  widows: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  background: #fff;
+}
+.menu .close {
+  display: flex;
+  justify-content: flex-end;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.menu .options {
+  background: rgba(255, 0, 0, 0.8);
+  width: 250px;
+  height: 100%;
+  padding-top: 10px;
+  position: fixed;
+  transition: all 0.3s linear;
+  z-index: 1;
+}
+.menu .optionView {
+  color: #555;
+  margin: 15px;
+  position: fixed;
+}
+
+@media (min-width: 200px) and (max-width: 481px) {
+  .menu .options {
+    left: -100%;
+  }
+  .debts {
+    grid-template-columns: 1fr;
+    padding: 30px 0 30px 0;
+    row-gap: 30px;
+  }
+  .debts .debt {
+    width: 270px;
+    height: 270px;
+  }
+  .debt .title .type {
+    font-size: 23pt;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .menu .options {
+    left: -100%;
+  }
+  .debts {
+    grid-template-columns: 1fr;
+    padding: 30px 0 30px 0;
+    row-gap: 30px;
+  }
+  .debts .debt {
+    width: 400px;
+    height: 230px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1280px) {
+  .menu .options {
+    left: -100%;
+  }
+  .debts {
+    grid-template-columns: 1fr 1fr;
+    padding: 30px 0 30px 0;
+    gap: 10px;
+  }
+  .debts .debt {
+    width: 400px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 2000px) {
+  .menu .optionView {
+    left: -100%;
+  }
+  .debts {
+    padding: 30px 0 30px 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    row-gap: 30px;
+  }
+  .debts .debt {
+    width: 380px;
+    height: 230px;
+  }
+}
+
+.menu .options .option {
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 15pt;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container .menu .option:hover {
+  background: #ff4b41;
+  box-shadow: 0 0 2 rgb(255, 0, 0, 0.8);
+}
+
+.debts {
+  display: grid;
+  width: 100%;
+  padding-top: 30px;
+  margin-top: 75px;
+}
+
+.debts .debt {
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.debts .debt .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+.debt .title .type {
+  margin-left: 10px;
+  font-size: 18pt;
+  font-weight: bold;
+}
+.debts .debt .description {
+  font-size: 13pt;
+  color: #777;
+  margin-bottom: 10px;
+}
+.debts .debt .paid {
+  font-size: 15pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+button.pay {
+  width: 200px;
+  height: 45px;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  background: #fc2f24;
+  font-size: 13pt;
+  margin-bottom: 15px;
+}
+button.pay:hover {
+  background: #df0b00;
+}
+.debt .title .icon {
+  color: #888;
+}
+.debts .debt .debtValue {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+.balance {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 15pt;
+  width: 250px;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  z-index: 1;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  border-radius: 5px;
+  color: #ff4b41;
+}
+
+.balance .value {
+  color: #667;
+  padding-left: 5px;
+  font-size: 15pt;
+}

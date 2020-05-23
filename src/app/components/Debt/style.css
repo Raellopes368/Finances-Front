@@ -1,0 +1,83 @@
+.debtContainer{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.debtContainer .block{
+  background: #fff;
+  height: 400px;
+  width: 300px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.8);
+  position: relative;
+}
+
+.debtContainer .block .close{
+  position: absolute;
+  top:3px;
+  right: 3px;
+  color:#ff261b;
+  font-size: 15pt;
+}
+.debtContainer .block .title{
+  font-size: 18pt;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.debtContainer .block input{
+  width: 250px;
+  height: 45px;
+  border-radius: 4px;
+  border: 1px solid #ff261b;
+  font-size: 13pt;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.debtContainer .block textarea{
+  width: 250px;
+  border-radius: 4px;
+  border: 1px solid #ff261b;
+  font-size: 13pt;
+  padding: 10px;
+  resize: none;
+  overflow:hidden
+}
+
+.debtContainer .block input::placeholder {
+  font-size: 15px;
+  color: #ff483ea8;
+}
+
+.debtContainer .block textarea::placeholder {
+  font-size: 15px;
+  color: #ff483ea8;
+}
+
+.debtContainer .block .enter{
+  width: 250px;
+  height: 45px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  background: #ff261b;
+  font-size: 13pt;
+}
+
+.balanceContainer .block .enter:hover {
+  background: #e70c00;
+}
