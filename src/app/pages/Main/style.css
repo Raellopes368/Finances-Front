@@ -5,6 +5,18 @@
   grid-template-columns: 1fr 5fr;
   background: #fff;
 }
+
+.reload {
+  position: absolute;
+  top: 15px;
+  right: 50%;
+  color: #ff4b41;
+  font-size: 16pt;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 .menu .close {
   display: flex;
   justify-content: flex-end;

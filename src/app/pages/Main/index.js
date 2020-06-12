@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FiRefreshCcw } from 'react-icons/fi';
 import {
   faBars,
   faWindowClose,
   faCreditCard,
   faHome,
-  faReceipt
+  faReceipt,
 } from "@fortawesome/free-solid-svg-icons";
 import api from "../../../services/api";
 import Balance from "../../components/Balance";
 import Debt from "../../components/Debt";
+import Filters from "../../components/Filters";
 
 import "./style.css";
 
-function Main({ match }) {
+function Main({ match, history }) {
   const [view, setView] = useState(false);
   const [balance, setBalance] = useState(0);
   const [debts, setDebts] = useState([]);
   const [windowDebt,setWindowDebt] = useState(false);
+  const [windowFilters,setWindowFilters] = useState(false);
   const [windowBalance,setWindow] = useState(false);
+  const [filtered,setFiltered] = useState(false);
 
   function closeBalance(){
     setWindow(false);
@@ -30,6 +34,14 @@ function Main({ match }) {
     setWindowDebt(false);
   }
 
+  function openFilters(){
+    setWindowFilters(true);
+  }
+
+  function closeFilters(){
+    setWindowFilters(false);
+  }
+
   function openDebt(){
     setWindowDebt(true);
   }
@@ -37,10 +49,32 @@ function Main({ match }) {
 
   async function newDebt(data){
     const { id } = match.params;
+    const token = localStorage.getItem("token");
     data.user = id;
-    const response = await api.post('/finances',{ data });
+    const response = await api.post('/finances',{
+      data ,
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    });
     setDebts([...debts,  response.data ]);
   }
+
+  async function handleFilter(data){
+    const { id } = match.params;
+    const response = await api.get(`/filters/${id}`, {
+      params: data
+    });
+
+    if(response.data.length){
+      setDebts(response.data);
+    }else{
+      alert('Não houve resultados');
+    }
+    setFiltered(true);
+    
+  }
+
 
   async function handleBalance(data){
     const updateBalance = data;
@@ -67,10 +101,10 @@ function Main({ match }) {
   }
 
   function getTypeOrigin(typeOrigin) {
-    if (typeOrigin.match(/Cartão/gim)) return "card";
-    if (typeOrigin.match(/Despesas/gim)) return "home";
-    if (typeOrigin.match(/Boleto/gim)) return "billet";
-    if (typeOrigin.match(/Outros/gim)) return "others";
+    if (typeOrigin.match(/cartão|cartao/gim)) return "card";
+    if (typeOrigin.match(/despesas/gim)) return "home";
+    if (typeOrigin.match(/boleto/gim)) return "billet";
+    if (typeOrigin.match(/outros/gim)) return "others";
     return "others"
   }
   function getType(type) {
@@ -83,10 +117,27 @@ function Main({ match }) {
     return types[type] || types.billet;
   }
 
+  async function reload(){
+    const token = localStorage.getItem("token");
+      const { id } = match.params;
+      const { data } = await api.get(`/login/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
+      setBalance(data.balance);
+      setDebts(data.finances);
+  }
+
   useEffect(() => {
     async function sendFirst() {
+      const token = localStorage.getItem("token");
       const { id } = match.params;
-      const { data } = await api.get(`/login/${id}`);
+      const { data } = await api.get(`/login/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
       setBalance(data.balance);
       setDebts(data.finances);
     }
@@ -113,8 +164,23 @@ function Main({ match }) {
     optionView.style.left = "0";
     setView(false);
   }
+
+  function loggout(){
+    localStorage.clear();
+    history.push('/');
+  }
   return (
     <div className="container">
+      {
+        filtered && (
+          <div className="reload" onClick={()=> {
+            reload();
+            setFiltered(false);
+          }}>
+            Recarregar dados <FiRefreshCcw />
+          </div>
+        )
+      }
       <div className="menu">
         <div className="optionView" onClick={() => viewOtions()}>
           <FontAwesomeIcon icon={faBars} size="3x" />
@@ -131,8 +197,12 @@ function Main({ match }) {
             closeView();
             openDebt();
           }}>Adicionar débito</div>
-          <div className="option">Filtrar</div>
-          <div className="option">Pagos</div>
+          <div className="option" onClick={()=> {
+            closeView();
+            openFilters();
+          }
+          }>Filtrar</div>
+          <div className="option" onClick={loggout}>Sair</div>
         </div>
       </div>
 
@@ -142,6 +212,7 @@ function Main({ match }) {
         </div>
         {windowBalance && <Balance hand={handleBalance} click={closeBalance}/>}
         {windowDebt && <Debt close={closeDebt} handleDebt={newDebt}/>}
+        {windowFilters && <Filters close={closeFilters} handleFilter={handleFilter}/>}
         
         {debts.map(debt => (
           

@@ -31,12 +31,14 @@ function Login({ history }) {
     }
 
     const { data } = await api.post("/users", { name });
-    console.log(data);
-    const { token, user } = data;
-    const { _id: id } = user;
-    localStorage.setItem("token", token);
 
-    localStorage.setItem("id", id);
+    const { token, user } = data;
+
+    const { _id: id } = user;
+    
+    await localStorage.setItem("token", token);
+
+    await localStorage.setItem("id", id);
 
     history.push(`/main/${id}`);
   }
@@ -47,7 +49,9 @@ function Login({ history }) {
   }
   return (
     <div className="container-login">
+      <div className="title">R&R Finanças</div>
       <div className={error ? `form form-no-no` : "form"}>
+      
         <input
           type="text"
           className="name"

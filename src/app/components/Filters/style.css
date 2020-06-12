@@ -1,4 +1,4 @@
-.balanceContainer{
+.filterContainer{
   position: absolute;
   top: 0;
   bottom: 0;
@@ -11,10 +11,25 @@
   align-items: center;
 } 
 
-.balanceContainer .block{
+.filters{
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* .filters .container-filter {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+} */
+
+.filterContainer .block{
   background: #fff;
-  height: 250px;
-  width: 300px;
+  min-height: 350px;
+  width: 100%;
+  max-width: 400px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -23,65 +38,53 @@
   position: relative;
 }
 
-.balanceContainer .block .close{
+
+
+.filterContainer .block .close{
   position: absolute;
   top:3px;
   right: 3px;
   color:#ff261b;
   font-size: 15pt;
 }
-
-.balanceContainer .block .tithe{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 13px;
-
-}
-.block .tithe label{
-  padding-bottom: 5px;
-  margin-right:5px ;
-  color:#667;
-  font-size: 11pt;
-}
-
-.select{
-  width: 15px;
-  height: 15px;
-  border: 1px solid #ff261b;
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  cursor: pointer;
-
-}
-.selected{
-  border-radius: 2px;
-  width: 10px;
-  height: 10px;
-  border: 1px solid #ff261b;
-}
-.balanceContainer .block .title{
+.filterContainer .block .title{
   font-size: 18pt;
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 20px;
 }
-.balanceContainer .block .value{
+
+.filterContainer .block input{
   width: 250px;
   height: 45px;
   border-radius: 4px;
   border: 1px solid #ff261b;
   font-size: 13pt;
   padding: 10px;
+  margin-bottom: 10px;
 }
-.balanceContainer .block .value::placeholder {
+
+.filterContainer .block textarea{
+  width: 250px;
+  border-radius: 4px;
+  border: 1px solid #ff261b;
+  font-size: 13pt;
+  padding: 10px;
+  resize: none;
+  overflow:hidden
+}
+
+.filterContainer .block input::placeholder {
   font-size: 15px;
   color: #ff483ea8;
 }
-.balanceContainer .block .enter{
+
+.filterContainer .block textarea::placeholder {
+  font-size: 15px;
+  color: #ff483ea8;
+}
+
+.filterContainer .block .enter{
   width: 250px;
   height: 45px;
   margin-top: 20px;
@@ -94,6 +97,38 @@
 
 .balanceContainer .block .enter:hover {
   background: #e70c00;
+}
+
+.filter{
+  padding: 10px;
+  width: 100%;
+  min-height: 50px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+.filter select {
+  width: 50%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0;
+  color: #333;
+  box-shadow: 0 0 5px #e70c00b2;
+  cursor: pointer;
+  
+}
+
+.filter select option{
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 0;
 }
 
 .container-filter {
@@ -164,4 +199,23 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+
+.search {
+  display: flex;
+  width: 100%;
+  padding: 20px
+}
+
+.search input[type='submit']{
+   width: 100%; 
+   background: #ff261b;
+   color: #fff;
+   font-size: 18px;
+   font-weight: bold;
+}
+ 
+.search input[type='submit']:hover{
+  background: #ff0d00;
 }

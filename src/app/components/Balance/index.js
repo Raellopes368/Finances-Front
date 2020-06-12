@@ -16,12 +16,11 @@ function Balance({click,hand}){
         <div className="title">Adicionar Saldo</div>
         <input type="text" className="value" placeholder='Valor' value={value} onChange={e=> setValue(e.target.value.replace(',','.'))}/>
         <div className="tithe">
-          <label htmlFor="title">Retirar dízimo?</label>
-          <div className="select" onClick={()=>setSelected(selected ? false: true)} >
-            <div className="selected" style={{
-              background: selected? '#ff261b': '#fff'
-            }}></div>
-          </div>
+          <label htmlFor="date" className="container-filter">
+              Retirar Dízimo? 
+              <input type="checkbox" name="date" id="date" onChange={(e)=>{setSelected(e.target.checked)}}/>
+              <span className="checkmark"></span>
+            </label>
         </div>
        
         <button className='enter' onClick={()=>hand({balance:Number(value),tithe:selected})}>Adicionar</button>
