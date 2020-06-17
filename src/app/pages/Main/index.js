@@ -17,12 +17,16 @@ import "./style.css";
 
 function Main({ match, history }) {
   const [view, setView] = useState(false);
-  const [balance, setBalance] = useState(0);
-  const [debts, setDebts] = useState([]);
   const [windowDebt,setWindowDebt] = useState(false);
   const [windowFilters,setWindowFilters] = useState(false);
   const [windowBalance,setWindow] = useState(false);
   const [filtered,setFiltered] = useState(false);
+  const [all,setAll] = useState({
+    balance: 0,
+    finances: [],
+    name: '',
+    totalDebit: 0
+  });
 
   function closeBalance(){
     setWindow(false);
@@ -57,17 +61,25 @@ function Main({ match, history }) {
         authorization: `Bearer ${token}`
       }
     });
-    setDebts([...debts,  response.data ]);
+    
+    const {value} = response.data;
+    setAll({
+        ...all, 
+        finances: 
+          [...all.finances, response.data] , 
+        totalDebit: all.totalDebit + value});
   }
 
   async function handleFilter(data){
     const { id } = match.params;
+    // console.log(data);
     const response = await api.get(`/filters/${id}`, {
       params: data
     });
-
+    // console.log(response.data)
     if(response.data.length){
-      setDebts(response.data);
+      // setDebts(response.data);
+      setAll({...all, finances: response.data})
     }else{
       alert('Não houve resultados');
     }
@@ -81,7 +93,8 @@ function Main({ match, history }) {
     const { id } = match.params;
     updateBalance.userId = id;
     const response = await api.put('/balance',updateBalance);
-    setBalance(response.data.balance);
+    setAll({...all, balance: response.data.balance});
+    // setBalance(response.data.balance);
     setWindow(false);
   }
 
@@ -95,9 +108,19 @@ function Main({ match, history }) {
     
     const { finance , user} = response.data;
 
-    setDebts(debts.map(debt=> debt._id === finance._id ? finance : debt));
+    console.log(response.data)
 
-    setBalance(user.balance);
+    setAll({...all, 
+        finances: all.finances.map(debt=> 
+            debt._id === finance._id ? 
+                finance 
+              : debt) ,
+        balance: user.balance , 
+        totalDebit: all.totalDebit - finance.value})
+
+    // setDebts(debts.map(debt=> debt._id === finance._id ? finance : debt));
+
+    // setBalance(user.balance);
   }
 
   function getTypeOrigin(typeOrigin) {
@@ -125,24 +148,39 @@ function Main({ match, history }) {
           authorization: `Bearer ${token}`
         }
       });
-      setBalance(data.balance);
-      setDebts(data.finances);
+      // setBalance(data.balance);
+      // setDebts(data.finances);
+      setAll(data.user);
   }
 
   useEffect(() => {
     async function sendFirst() {
       const token = localStorage.getItem("token");
-      const { id } = match.params;
-      const { data } = await api.get(`/login/${id}`, {
-        headers: {
-          authorization: `Bearer ${token}`
+      if(!token) history.push('/');
+      else{
+        const { id } = match.params;
+        const { data } = await api.get(`/login/${id}`, {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        });
+        if(data){
+          const { user } = data;
+          // console.log(user);
+          setAll(user);
+          // setBalance(user.balance);
+          // setDebts(user.finances);
+        }else{
+          alert('Houve um erro ao carregar dados do servidor, por favor, clique em sair, e entre novamente!');
         }
-      });
-      setBalance(data.balance);
-      setDebts(data.finances);
+        // 
+        // 
+      }
+     
+      
     }
     sendFirst();
-  }, [match]);
+  }, [history, match]);
 
   function viewOtions() {
     const options = document.querySelector(".options");
@@ -170,7 +208,9 @@ function Main({ match, history }) {
     history.push('/');
   }
   return (
-    <div className="container">
+    <div className="container" style={{
+      overflow: (windowBalance || windowDebt || windowFilters ) ? 'hidden': '' 
+    }}>
       {
         filtered && (
           <div className="reload" onClick={()=> {
@@ -208,13 +248,16 @@ function Main({ match, history }) {
 
       <div className="debts">
         <div className="balance">
-          Saldo: <div className="value">R$ {balance.toFixed(2).replace(/\./,',')}</div>
+          Saldo: <div className="value">R$ {all.balance.toFixed(2).replace(/\./,',')}</div>
+        </div>
+        <div className="all-debts">
+          Débitos: <div className="value">R$ {all.totalDebit.toFixed(2).replace(/\./,',')}</div>
         </div>
         {windowBalance && <Balance hand={handleBalance} click={closeBalance}/>}
         {windowDebt && <Debt close={closeDebt} handleDebt={newDebt}/>}
         {windowFilters && <Filters close={closeFilters} handleFilter={handleFilter}/>}
         
-        {debts.map(debt => (
+        {all.finances.map(debt => (
           
           <div className="debt" key={debt._id}>
             <div className="title">
