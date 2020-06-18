@@ -91,8 +91,13 @@ function Main({ match, history }) {
   async function handleBalance(data){
     const updateBalance = data;
     const { id } = match.params;
+    const token = localStorage.getItem('token');
     updateBalance.userId = id;
-    const response = await api.put('/balance',updateBalance);
+    const response = await api.put('/balance',updateBalance, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
+    });
     setAll({...all, balance: response.data.balance});
     // setBalance(response.data.balance);
     setWindow(false);

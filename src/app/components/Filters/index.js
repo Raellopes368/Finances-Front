@@ -16,7 +16,7 @@ const [descriptionOption, setDescriptionOption ] = useState(false);
 function getDate(){
   const curr = new Date();
   
-  curr.setDate(curr.getDate() + 3);
+  curr.setDate(curr.getDate());
 
   const date = curr.toISOString().substr(0,10);
 
