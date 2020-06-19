@@ -27,7 +27,7 @@
 }
 .menu .options {
   background: rgba(255, 0, 0, 0.8);
-  width: 250px;
+  width: 220px;
   height: 100%;
   padding-top: 10px;
   position: fixed;
@@ -43,6 +43,13 @@
 @media (min-width: 200px) and (max-width: 481px) {
   .menu .options {
     left: -100%;
+    z-index: 1;
+  }
+  .all-debts{
+    z-index: 5;
+  }
+  .menu{
+    z-index: 5;
   }
   .debts {
     grid-template-columns: 1fr;
