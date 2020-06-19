@@ -71,9 +71,8 @@ function Login({ history }) {
     if(!data.error){
       const { token, user: { _id: id } } = data;
 
-    
       localStorage.setItem('token', token);
-      
+
       localStorage.setItem('id', id);
 
       history.push(`/main/${id}`);

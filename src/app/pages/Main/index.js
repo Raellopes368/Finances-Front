@@ -49,14 +49,16 @@ function Main({ match, history }) {
   function openDebt(){
     setWindowDebt(true);
   }
-  
 
   async function newDebt(data){
     const { id } = match.params;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
+
     data.user = id;
     const response = await api.post('/finances',{
-      data ,
+      data
+    },
+    {
       headers: {
         authorization: `Bearer ${token}`
       }
@@ -72,9 +74,13 @@ function Main({ match, history }) {
 
   async function handleFilter(data){
     const { id } = match.params;
+    const token = localStorage.getItem('token');
     // console.log(data);
     const response = await api.get(`/filters/${id}`, {
-      params: data
+      params: data,
+      headers: {
+        authorization: `Bearer ${token}`
+      }
     });
     // console.log(response.data)
     if(response.data.length){
@@ -84,7 +90,6 @@ function Main({ match, history }) {
       alert('Não houve resultados');
     }
     setFiltered(true);
-    
   }
 
 
@@ -99,21 +104,24 @@ function Main({ match, history }) {
       }
     });
     setAll({...all, balance: response.data.balance});
-    // setBalance(response.data.balance);
+
     setWindow(false);
   }
 
   async function paidDebit(financeId){
     const { id } = match.params;
+    const token = localStorage.getItem('token');
     const response = await api.put('/paid',{
       userId: id,
       financeId:financeId,
       paid:true
+    },{
+      headers: {
+        authorization: `Bearer ${token}`
+      }
     });
     
     const { finance , user} = response.data;
-
-    console.log(response.data)
 
     setAll({...all, 
         finances: all.finances.map(debt=> 
