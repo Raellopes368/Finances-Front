@@ -5,6 +5,7 @@ import { IconContext } from "react-icons";
 import './style.css';
 import api from '../../../services/api';
 import Forgot from '../../components/Forgot';
+import logo from '../../../assets/logo.svg';
 
 function Login({ history }) {
   const [name, setName] = useState('');
@@ -89,7 +90,9 @@ function Login({ history }) {
   return (
     <div className='container-login'>
       { forgot && <Forgot click={close} hand={handleForgot}/>}
-      <div className='title'>R&R Finanças</div>
+      <div className='title'>
+        <img src={logo} alt="R&R Technology"/>
+      </div>
       {messageError 
         && 
           <div 

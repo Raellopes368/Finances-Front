@@ -10,12 +10,17 @@
   
 }
 
-.title{
+/* .title{
   margin-bottom: 30px;
   font-size: 18px;
   font-weight: bold;
   font-family: Roboto, sans-serif;
   color: rgba(255,0,0, .8);
+} */
+
+.title img{
+  width: 180px;
+  margin-bottom: -17px;
 }
 
 .form {

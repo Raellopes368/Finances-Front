@@ -7,7 +7,7 @@ import './style.css';
 
 function Forgot({click,hand}){
   const [email, setEmail] = useState('');
-
+ 
   return (
     <div className="forgotContainer">
       <div className="block">
