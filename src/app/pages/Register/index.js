@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { GrView, GrFormViewHide } from 'react-icons/gr';
 import { IconContext } from "react-icons";
 import './style.css';
+import logo from '../../../assets/logo.svg';
 import api from '../../../services/api';
 
 function Register({ history }) {
@@ -62,7 +63,9 @@ function Register({ history }) {
   }
   return (
     <div className='container-login'>
-      <div className='title'>R&R Finanças</div>
+      <div className='title'>
+        <img src={logo} alt="R&R Technology"/>
+      </div>
       {messageError 
         && 
           <div 
