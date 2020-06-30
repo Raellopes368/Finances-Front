@@ -39,7 +39,7 @@
   width: 300px;
   height: 45px;
   border-radius: 4px;
-  border: 1px solid #ff261b;
+  border: 1px solid #040f56;
   font-size: 13pt;
   padding: 10px;
 }
@@ -95,7 +95,7 @@
   border: 0;
   border-radius: 4px;
   color: #fff;
-  background: #ff261b;
+  background: #040f56;
   font-size: 13pt;
 }
 /* label {
@@ -105,11 +105,11 @@
   margin-bottom: 10px;
 } */
 .form .enter:hover {
-  background: #ff0d00;
+  background: #010b46;
 }
 .form .name::placeholder {
   font-size: 15px;
-  color: #ff483ea8;
+  color: #040f5680;
 }
 
 @keyframes no-no {

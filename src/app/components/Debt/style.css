@@ -27,7 +27,7 @@
   position: absolute;
   top:3px;
   right: 3px;
-  color:#ff261b;
+  color:#040f56;
   font-size: 15pt;
 }
 .debtContainer .block .title{
@@ -41,7 +41,7 @@
   width: 250px;
   height: 45px;
   border-radius: 4px;
-  border: 1px solid #ff261b;
+  border: 1px solid #040f56;
   font-size: 13pt;
   padding: 10px;
   margin-bottom: 10px;
@@ -50,7 +50,7 @@
 .debtContainer .block textarea{
   width: 250px;
   border-radius: 4px;
-  border: 1px solid #ff261b;
+  border: 1px solid #040f56;
   font-size: 13pt;
   padding: 10px;
   resize: none;
@@ -59,12 +59,12 @@
 
 .debtContainer .block input::placeholder {
   font-size: 15px;
-  color: #ff483ea8;
+  color: #040f5680;
 }
 
 .debtContainer .block textarea::placeholder {
   font-size: 15px;
-  color: #ff483ea8;
+  color: #040f5680;
 }
 
 .debtContainer .block .enter{
@@ -74,10 +74,10 @@
   border: 0;
   border-radius: 4px;
   color: #fff;
-  background: #ff261b;
+  background: #040f56;
   font-size: 13pt;
 }
 
 .balanceContainer .block .enter:hover {
-  background: #e70c00;
+  background: #020a3b;
 }

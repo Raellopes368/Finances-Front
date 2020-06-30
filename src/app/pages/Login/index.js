@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { GrView, GrFormViewHide } from 'react-icons/gr';
+import { MdVisibilityOff, MdVisibility } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import './style.css';
 import api from '../../../services/api';
@@ -125,14 +125,14 @@ function Login({ history }) {
               onKeyPress={key => enterPress(key)}
             />
             <div className="hidde">
-            <IconContext.Provider value={{ color: "#ff483ea8", className: "global-class-name", size:"1.3em" }}>
+            <IconContext.Provider value={{ color: "#333", className: "global-class-name", size:"1.3em" }}>
               { hidden 
-                ? <GrView 
+                ? <MdVisibility 
                   
                     onClick={toggleHidden}
                   />
                 : 
-                    <GrFormViewHide 
+                    <MdVisibilityOff 
                     onClick={toggleHidden}/> 
                   }
              </IconContext.Provider>     

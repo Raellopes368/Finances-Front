@@ -261,10 +261,15 @@ function Main({ match, history }) {
 
       <div className="debts">
         <div className="balance">
-          Saldo: <div className="value">R$ {all.balance.toFixed(2).replace(/\./,',')}</div>
+          Saldo: <div className="value" style={{
+            color: all.balance < 0 ? '#ff0d0099': '#008000',
+          }}
+          >R$ {all.balance.toFixed(2).replace(/\./,',')}</div>
         </div>
         <div className="all-debts">
-          Débitos: <div className="value">R$ {all.totalDebit.toFixed(2).replace(/\./,',')}</div>
+          Débitos: <div className="value" style={{
+            color: all.totalDebit > 0 ? '#ff0d0099': '#667',
+          }}>R$ {all.totalDebit.toFixed(2).replace(/\./,',')}</div>
         </div>
         {windowBalance && <Balance hand={handleBalance} click={closeBalance}/>}
         {windowDebt && <Debt close={closeDebt} handleDebt={newDebt}/>}

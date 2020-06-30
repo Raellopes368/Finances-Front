@@ -46,7 +46,7 @@
   position: absolute;
   top:3px;
   right: 3px;
-  color:#ff261b;
+  color:#040f56;
   font-size: 15pt;
 }
 .filterContainer .block .title{
@@ -60,7 +60,7 @@
   width: 250px;
   height: 45px;
   border-radius: 4px;
-  border: 1px solid #ff261b;
+  border: 1px solid #040f56;
   font-size: 13pt;
   padding: 10px;
   margin-bottom: 10px;
@@ -69,7 +69,7 @@
 .filterContainer .block textarea{
   width: 250px;
   border-radius: 4px;
-  border: 1px solid #ff261b;
+  border: 1px solid #040f56;
   font-size: 13pt;
   padding: 10px;
   resize: none;
@@ -78,12 +78,12 @@
 
 .filterContainer .block input::placeholder {
   font-size: 15px;
-  color: #ff483ea8;
+  color: #040f5680;
 }
 
 .filterContainer .block textarea::placeholder {
   font-size: 15px;
-  color: #ff483ea8;
+  color: #040f5680;
 }
 
 .filterContainer .block .enter{
@@ -93,12 +93,12 @@
   border: 0;
   border-radius: 4px;
   color: #fff;
-  background: #ff261b;
+  background: #040f56;
   font-size: 13pt;
 }
 
 .balanceContainer .block .enter:hover {
-  background: #e70c00;
+  background: #01093d;
 }
 
 .filter{
@@ -121,7 +121,7 @@
   font-weight: bold;
   border: 0;
   color: #333;
-  box-shadow: 0 0 5px #e70c00b2;
+  box-shadow: 0 0 5px #040f56;
   cursor: pointer;
   
 }
@@ -160,7 +160,7 @@
 .checkmark {
   position: absolute;
   border-radius: 5px;
-  border:thin solid rgba(243, 36, 36, 0.61);
+  border:thin solid #040f5661;
   top: 0;
   left: 5px;
   height: 25px;
@@ -170,12 +170,12 @@
 
 /* On mouse-over, add a grey background color */
 .container-filter:hover input ~ .checkmark {
-  background-color:rgba(245, 22, 22, 0.801);
+  background-color:#040f5681;
 }
 
 /* When the checkbox is checked, add a blue background */
 .container-filter input:checked ~ .checkmark {
-  background-color: #ff0101;
+  background-color: #040f56;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -212,12 +212,12 @@
 
 .search input[type='submit']{
    width: 100%; 
-   background: #ff261b;
+   background: #040f56;
    color: #fff;
    font-size: 18px;
    font-weight: bold;
 }
  
 .search input[type='submit']:hover{
-  background: #ff0d00;
+  background: #040f56;
 }

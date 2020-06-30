@@ -11,7 +11,7 @@
   position: absolute;
   top: 15px;
   right: 50%;
-  color: #ff4b41;
+  color: #040f56;
   font-size: 16pt;
   font-weight: bold;
   cursor: pointer;
@@ -26,7 +26,7 @@
   margin-right: 10px;
 }
 .menu .options {
-  background: rgba(255, 0, 0, 0.8);
+  background: linear-gradient(#040f56, rgb(80,125,160));
   width: 220px;
   height: 100%;
   padding-top: 10px;
@@ -125,8 +125,8 @@
 }
 
 .container .menu .option:hover {
-  background: #ff4b41;
-  box-shadow: 0 0 2 rgb(255, 0, 0, 0.8);
+  background: #040f56;
+  box-shadow: 0 0 2 #040f5680;
 }
 
 .debts {
@@ -139,7 +139,7 @@
 .debts .debt {
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 5px #040f5680;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,16 +173,17 @@
 
 button.pay {
   width: 200px;
+  padding: 5px;
   height: 45px;
   border: 0;
   border-radius: 4px;
   color: #fff;
-  background: #fc2f24;
+  background: #040f56;
   font-size: 13pt;
   margin-bottom: 15px;
 }
 button.pay:hover {
-  background: #df0b00;
+  background: #020938;
 }
 .debt .title .icon {
   color: #888;
@@ -207,9 +208,9 @@ button.pay:hover {
   align-items: center;
   background: #fff;
   z-index: 1;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 5px #040f5680;
   border-radius: 5px;
-  color: #ff4b41;
+  color: #040f56;
 }
 .all-debts{
   position: fixed;
@@ -224,9 +225,9 @@ button.pay:hover {
   align-items: center;
   background: #fff;
   z-index: 1;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 5px #040f5680;
   border-radius: 5px;
-  color: #ff4b41;
+  color: #040f56;
 }
 
 
